@@ -1,0 +1,13 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-links a {
+    margin-right: 20px;
+    color: #0073b1;
+    text-decoration: none;
+}

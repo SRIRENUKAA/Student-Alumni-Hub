@@ -1,0 +1,148 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Sidebar with Smooth Animation */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Open Sidebar Animation */
+.sidebar.open {
+  transform: translateX(0);
+}
+
+/* Sidebar Content Styling */
+.sidebar-content {
+  text-align: center;
+}
+
+/* Profile Image */
+.sidebar-profile-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-profile-icon:hover {
+  transform: scale(1.1);
+}
+
+/* Name and Saved Posts - No Hover Effect */
+.sidebar-content p {
+  font-size: 16px;
+  color: #333;
+  margin: 15px 0;
+  padding: 10px;
+}
+
+.main-content {
+  margin-left: 60px;
+  padding: 20px;
+  width: 100%;
+}
+
+.post-button {
+  padding: 10px 20px;
+  background: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Animation for Entering */
+.fade-enter {
+  opacity: 0;
+  transform: scale(0.9);
+  animation: fadeInScale 0.5s forwards;
+}
+
+/* Animation for Exiting */
+.fade-exit {
+  animation: fadeOutScale 0.4s forwards;
+}
+
+.plus-button {
+  font-size: 2rem;
+  padding: 0.4rem 1rem;
+  background-color: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.plus-button:hover {
+  background-color: #2563eb;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 400px;
+  max-width: 90%;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.alumni-info img {
+  width: 100px;         /* Adjust the size as needed */
+  height: 100px;
+  border-radius: 50%;   /* This makes the image round */
+  object-fit: cover;    /* Ensures the image doesn't stretch */
+  margin-bottom: 10px;
+  border: 2px solid #ddd; /* Optional: adds a border for style */
+}

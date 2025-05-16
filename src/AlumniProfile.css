@@ -1,0 +1,604 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease-in-out;
+}
+
+body::-webkit-scrollbar {
+  width: 0;  /* Hides the scrollbar */
+  height: 0; /* Hides the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background: transparent; /* Make the scrollbar thumb invisible */
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent; /* Make the track invisible */
+}
+
+/* Profile Container */
+.profile-container {
+  width: 60vw;
+  max-width: 800px;
+  padding: 40px;
+  text-align: center;
+  border-radius: 12px;
+  position: relative;
+  transition: filter 0.3s ease-in-out;
+}
+
+.blur-background {
+  filter: blur(5px);
+}
+
+/* Blur the background */
+.blur-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+/* Profile Image Section */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.profile-img-container {
+  position: relative; /* Makes the container the reference point for absolute positioning */
+  display: inline-block;
+}
+
+/* Profile image style */
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #0073B1; /* LinkedIn Blue */
+  box-shadow: 0 4px 10px rgba(0, 115, 177, 0.3);
+  transition: transform 0.3s ease; /* Smooth zoom effect on hover */
+}
+
+/* Upload button style */
+.upload-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: #ffffff; /* White background */
+  border: 2px solid #0073B1; /* Thin border with LinkedIn blue */
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 22px; /* Adjusted for a better visual look */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease; /* Smooth transition for effects */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+}
+
+.upload-btn:hover {
+  background-color: #0073B1; /* Background turns blue on hover */
+  color: white; /* Icon color turns white */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.upload-btn:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 115, 177, 0.5); /* Focus glow effect */
+}
+
+.upload-btn:active {
+  transform: scale(1.05); /* Shrink slightly on click */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Return shadow to normal on click */
+}
+
+
+/* Optional hover effect for the profile image */
+.profile-img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Profile Stats */
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.profile-stats div {
+  text-align: center;
+}
+
+.profile-stats h3 {
+  font-size: 22px;
+  color: #0073B1;
+  font-weight: bold;
+}
+
+.profile-stats p {
+  font-size: 15px;
+  color: #6C757D;
+}
+
+/* Profile Info */
+.profile-info {
+  margin-top: 20px;
+  text-align: left;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Form Fields */
+.profile-info input {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #F9FAFB;
+  transition: all 0.3s ease-in-out;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.profile-info input:focus {
+  border-color: #0073B1;
+  outline: none;
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 115, 177, 0.5);
+}
+
+/* Hide profile details when editing */
+.edit-mode .profile-details {
+  display: none;
+}
+
+/* Modal Styling */
+.edit-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 620px;
+  max-height: 70vh;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  z-index: 1001;
+  font-family: 'Segoe UI', sans-serif;
+  transform-origin: center center; /* this is important! */
+}
+
+/* Animation for smooth header appearance */
+@keyframes fadeInHeader {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header Styling */
+.edit-modal h2 {
+  grid-column: span 2;
+  text-align: center;
+  font-size: 28px; /* Balanced, easy-to-read font size */
+  color: #2c3e50; /* A subtle, professional color */
+  font-weight: 600; /* Slightly bold to stand out */
+  margin-bottom: 30px;
+  font-family: 'Arial', sans-serif; /* Clean font */
+  text-transform: none; /* Regular capitalization */
+  letter-spacing: 0.5px; /* Slight letter spacing for readability */
+  animation: fadeInHeader 0.5s ease-out; /* Smooth fade-in effect */
+  padding-bottom: 15px;
+  border-bottom: 2px solid #bdc3c7; /* Subtle border for clean separation */
+}
+
+/* Optional hover effect (light) */
+.edit-modal h2:hover {
+  color: #3498db; /* Light blue on hover to keep it professional */
+  cursor: pointer; /* Show pointer cursor */
+}
+
+
+.edit-modal .button-group {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.edit-modal .save-button,
+.edit-modal .cancel-button {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.edit-modal .save-button {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+}
+
+.edit-modal .cancel-button {
+  background: linear-gradient(135deg, #ff4e50, #f44336);
+  color: #fff;
+}
+
+.edit-modal .save-button::before,
+.edit-modal .cancel-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: skewX(-20deg);
+  transition: 0.5s;
+  z-index: 0;
+}
+
+.edit-modal .save-button:hover::before,
+.edit-modal .cancel-button:hover::before {
+  left: 100%;
+}
+
+.edit-modal .save-button:hover,
+.edit-modal .cancel-button:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.edit-modal.closing {
+  animation: tearCenter 0.6s ease forwards;
+}
+
+/* Actual tear-like animation */
+@keyframes tearCenter {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(0.97) rotate(2deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.94) rotate(-2deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(0.9) rotate(3deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7) rotate(-4deg);
+  }
+}
+
+.edit-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto; /* Allow form content to scroll */
+  max-height: calc(70vh - 100px); /* Form max height adjusted for header and buttons */
+}
+
+.edit-form::-webkit-scrollbar {
+  width: 0;  /* Hides the scrollbar */
+  height: 0; /* Hides the scrollbar */
+}
+
+.edit-form::-webkit-scrollbar-thumb {
+  background: transparent; /* Make the scrollbar thumb invisible */
+}
+
+.edit-form::-webkit-scrollbar-track {
+  background: transparent; /* Make the track invisible */
+}
+
+@media (max-width: 768px) {
+  .edit-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.input-block {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input-block .icon {
+  font-size: 1.3rem;
+  color: #4a90e2;
+  margin-bottom: 8px;
+}
+
+.input-block label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.input-block input,
+.input-block textarea {
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-block input:focus,
+.input-block textarea:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 8px #4a90e2;
+}
+
+.input-block textarea {
+  resize: vertical;
+  min-height: 60px;
+  max-height: 150px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1024px) {
+  .profile-container {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    width: 90vw;
+    padding: 20px;
+  }
+
+  .profile-stats {
+    flex-direction: column;
+  }
+
+  .profile-img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+:root {
+  --blue-main: #0073b1;        /* Primary LinkedIn Blue */
+  --blue-light: #00a0dc;
+  --blue-dark: #004b7c;
+  --accent: #0ea5e9;
+  --text-light: #f8fafc;
+  --text-muted: #94a3b8;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+.profile-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 36px;
+  border-radius: 24px;
+}
+
+/* Each item card */
+.summary-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 26px 34px;
+  border-radius: 22px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 12px 32px var(--shadow);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.4s ease;
+}
+
+/* Glow on hover */
+.summary-item::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(0, 115, 177, 0.15), transparent 70%);
+  transform: scale(0);
+  transition: transform 0.5s ease;
+  z-index: 0;
+}
+
+.summary-item:hover::before {
+  transform: scale(1);
+}
+
+.summary-item:hover {
+  transform: scale(1.025);
+  box-shadow: 0 16px 38px rgba(0, 115, 177, 0.35);
+}
+
+.summary-item.filled {
+  background: linear-gradient(135deg, #0073b1, #00a0dc);
+  color: #ffffff;
+}
+
+.summary-item.empty {
+  border: 1.5px dashed rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.025);
+  opacity: 0.9;
+}
+
+/* Icon */
+.summary-icon {
+  font-size: 24px;
+  padding: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--blue-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.summary-item.filled .summary-icon {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.summary-item.empty .summary-icon {
+  background: transparent;
+  color: var(--text-muted);
+}
+
+/* Text */
+.summary-item p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  z-index: 1;
+}
+
+/* Label With Icon */
+.label-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.label-with-icon .icon {
+  font-size: 1.2rem;
+  color: var(--blue-main);
+  animation: pulseShine 1.8s infinite ease-in-out;
+}
+
+.label-with-icon label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* Subtle icon animation */
+@keyframes pulseShine {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 1;
+  }
+}
+
+
+.floating-objects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  pointer-events: none; /* Prevent these elements from blocking clicks */
+}
+
+.floating-object {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(52, 152, 219, 0.4);
+  border-radius: 50%;
+  animation: floatAround 10s ease-in-out infinite;
+}
+
+.left-object {
+  left: -70px; /* Positioning to the left */
+  top: 30%;
+  animation-delay: 0s;
+}
+
+.right-object {
+  right: -70px; /* Positioning to the right */
+  top: 50%;
+  animation-delay: 1s;
+}
+
+.top-left-object {
+  left: -80px;
+  top: 10%;
+  animation-delay: 2s;
+}
+
+.top-right-object {
+  right: -80px;
+  top: 80%;
+  animation-delay: 3s;
+}
+
+@keyframes floatAround {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(20deg);
+  }
+}

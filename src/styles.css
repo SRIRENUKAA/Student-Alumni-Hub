@@ -1,0 +1,75 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #FFFFFF; /* Pure White */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Glassmorphism Container */
+.container {
+  text-align: center;
+  background: #ECECEC; /* Light Gray (Card Background) */
+  padding: 50px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #D1D1D1; /* Light Gray Border */
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading */
+h1 {
+  color: #333333; /* Dark Gray */
+  font-size: 28px;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+/* Button Styling */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  background: linear-gradient(45deg, #6C757D, #007BFF); /* Muted Dark Gray & Subtle Blue */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+}
+
+/* Button Hover Effect */
+button:hover {
+  background: linear-gradient(45deg, #007BFF, #6C757D);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(108, 117, 125, 0.4);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
