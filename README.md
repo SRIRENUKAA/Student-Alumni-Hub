@@ -1,7 +1,7 @@
 <h1 align="center">🎓 Student-Alumni Hub</h1>
 
 ### 👋 Hi, I'm Sri Renuka  
-A passionate frontend developer from India 🇮🇳  
+A passionate frontend developer from India 🇮🇳
 
 This is a **Student-Alumni Connection Portal** built using the MERN stack to connect students with alumni for guidance, opportunities, and mentoring.
 
